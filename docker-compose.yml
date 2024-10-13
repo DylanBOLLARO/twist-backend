@@ -13,8 +13,8 @@ services:
             - 55432:55432
         networks:
             - twist_default
-    twist-nestjs:
-        container_name: twist-nestjs
+    twist-backend:
+        container_name: twist-backend
         build:
             context: .
         restart: unless-stopped
@@ -25,7 +25,7 @@ services:
         depends_on:
             - twist-postgres
         networks:
-            # - nginx_default
+            - nginx_default
             - twist_default
 networks:
     nginx_default:

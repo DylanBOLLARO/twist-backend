@@ -1,0 +1,59 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+enum Role {
+    USER
+    ADMIN
+}
+
+model User {
+    id          Int           @id @default(autoincrement())
+    createdAt   DateTime      @default(now())
+    updatedAt   DateTime      @updatedAt
+    firstname   String?
+    lastname    String?
+    email       String        @unique
+    hash        String
+    hashedRt    String?
+    role        Role          @default(USER)
+    homeDetails HomeDetails[]
+    gender      String? // Gender (e.g., male, female, non-binary)
+
+    @@map("users")
+}
+
+model HomeDetails {
+    id           Int       @id @default(autoincrement())
+    slug         String    @unique
+    title        String?
+    description  String?
+    price        Float?
+    location     String?
+    address      String?
+    postalCode   String?
+    city         String?
+    country      String?
+    propertyType String? // e.g., "house", "apartment"
+    area         Float? // Surface area in square meters
+    bedrooms     Int?
+    bathrooms    Int?
+    garage       Boolean? // If the property has a garage
+    garden       Boolean? // If the property has a garden
+    pool         Boolean? // If the property has a pool
+    createdAt    DateTime? @default(now())
+    updatedAt    DateTime? @updatedAt
+    images       Json? // Store a list of image URLs or paths
+    userId       Int
+    user         User      @relation(fields: [userId], references: [id])
+
+    @@map("home_details")
+}

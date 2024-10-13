@@ -1,0 +1,216 @@
+{
+    "_type": "export",
+    "__export_format": 4,
+    "__export_date": "2024-10-13T21:41:40.963Z",
+    "__export_source": "insomnia.desktop.app:v10.0.0",
+    "resources": [
+        {
+            "_id": "req_aada9191d0bd4d30ae111c5ad9beba6e",
+            "parentId": "fld_9520235b6a6947a5bf99c605f96bbee4",
+            "modified": 1728851639715,
+            "created": 1728851575645,
+            "url": "{{ _.url }}/home-details",
+            "name": "findAll",
+            "description": "",
+            "method": "GET",
+            "body": {},
+            "parameters": [],
+            "headers": [
+                {
+                    "name": "User-Agent",
+                    "value": "insomnia/10.0.0"
+                }
+            ],
+            "authentication": {},
+            "metaSortKey": -1728851575645,
+            "isPrivate": false,
+            "pathParameters": [],
+            "settingStoreCookies": true,
+            "settingSendCookies": true,
+            "settingDisableRenderRequestBody": false,
+            "settingEncodeUrl": true,
+            "settingRebuildPath": true,
+            "settingFollowRedirects": "global",
+            "_type": "request"
+        },
+        {
+            "_id": "fld_9520235b6a6947a5bf99c605f96bbee4",
+            "parentId": "wrk_scratchpad",
+            "modified": 1728851568137,
+            "created": 1728851568137,
+            "name": "home-details",
+            "description": "",
+            "environment": {},
+            "environmentPropertyOrder": null,
+            "metaSortKey": -1728851568137,
+            "_type": "request_group"
+        },
+        {
+            "_id": "wrk_scratchpad",
+            "parentId": null,
+            "modified": 1701371845590,
+            "created": 1701371845590,
+            "name": "Scratch Pad",
+            "description": "",
+            "scope": "collection",
+            "_type": "workspace"
+        },
+        {
+            "_id": "req_208d611c31344f569604504b5343252c",
+            "parentId": "fld_9520235b6a6947a5bf99c605f96bbee4",
+            "modified": 1728855171545,
+            "created": 1728855168593,
+            "url": "{{ _.url }}/home-details/luxury-apartment-downtown",
+            "name": "findOne",
+            "description": "",
+            "method": "GET",
+            "body": {},
+            "parameters": [],
+            "headers": [
+                {
+                    "name": "User-Agent",
+                    "value": "insomnia/10.0.0"
+                }
+            ],
+            "authentication": {},
+            "metaSortKey": -1722541477303.25,
+            "isPrivate": false,
+            "pathParameters": [],
+            "settingStoreCookies": true,
+            "settingSendCookies": true,
+            "settingDisableRenderRequestBody": false,
+            "settingEncodeUrl": true,
+            "settingRebuildPath": true,
+            "settingFollowRedirects": "global",
+            "_type": "request"
+        },
+        {
+            "_id": "req_068ee287a3c6488c9c55be8f77d3e24f",
+            "parentId": "fld_9520235b6a6947a5bf99c605f96bbee4",
+            "modified": 1728852840892,
+            "created": 1728852421054,
+            "url": "{{ _.url }}/home-details",
+            "name": "create",
+            "description": "",
+            "method": "POST",
+            "body": {
+                "mimeType": "application/json",
+                "text": "{\n    \"slug\": \"luxury-apartment-downtown\",\n    \"title\": \"Luxury Apartment in Downtown\",\n    \"description\": \"Spacious luxury apartment in the heart of the city, with a beautiful skyline view.\",\n    \"price\": 1200000,\n    \"location\": \"Downtown\",\n    \"address\": \"123 Main St\",\n    \"postalCode\": \"10001\",\n    \"city\": \"New York\",\n    \"country\": \"USA\",\n    \"propertyType\": \"apartment\",\n    \"area\": 120,\n    \"bedrooms\": 3,\n    \"bathrooms\": 2,\n    \"garage\": true,\n    \"garden\": false,\n    \"pool\": true,\n    \"createdAt\": \"2023-10-13T12:00:00Z\",\n    \"updatedAt\": \"2023-10-13T12:00:00Z\",\n    \"images\": [\"img1.jpg\", \"img2.jpg\"],\n    \"userId\": 1\n  }"
+            },
+            "parameters": [],
+            "headers": [
+                {
+                    "name": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "name": "User-Agent",
+                    "value": "insomnia/10.0.0"
+                }
+            ],
+            "authentication": {},
+            "metaSortKey": -1716231378961.5,
+            "isPrivate": false,
+            "pathParameters": [],
+            "settingStoreCookies": true,
+            "settingSendCookies": true,
+            "settingDisableRenderRequestBody": false,
+            "settingEncodeUrl": true,
+            "settingRebuildPath": true,
+            "settingFollowRedirects": "global",
+            "_type": "request"
+        },
+        {
+            "_id": "env_99d30891da4bdcebc63947a8fc17f076de878684",
+            "parentId": "wrk_scratchpad",
+            "modified": 1728851624586,
+            "created": 1701371854860,
+            "name": "Base Environment",
+            "data": {
+                "url": "http://localhost:55000"
+            },
+            "dataPropertyOrder": {
+                "&": [
+                    "url"
+                ]
+            },
+            "color": null,
+            "isPrivate": false,
+            "metaSortKey": 1701371854860,
+            "_type": "environment"
+        },
+        {
+            "_id": "jar_99d30891da4bdcebc63947a8fc17f076de878684",
+            "parentId": "wrk_scratchpad",
+            "modified": 1728340055034,
+            "created": 1701371854863,
+            "name": "Default Jar",
+            "cookies": [
+                {
+                    "key": "access_token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoiZGJAZ2FtYWlsLmNvbSIsImlhdCI6MTcyODA2NjQzNywiZXhwIjoxNzI4MDY3MzM3fQ.UADUXvBI4XzGqrSjGb_3tIrgwE2rLstI-yexoh4h4qc",
+                    "domain": "dylanbollaro.ovh",
+                    "path": "/",
+                    "secure": true,
+                    "httpOnly": true,
+                    "hostOnly": true,
+                    "creation": "2024-10-02T20:18:22.262Z",
+                    "lastAccessed": "2024-10-04T18:27:15.207Z",
+                    "sameSite": "none",
+                    "id": "9245b646-3f27-4008-a2b8-977303124fb5"
+                },
+                {
+                    "key": "refresh_token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoiZGJAZ2FtYWlsLmNvbSIsImlhdCI6MTcyODA2NjQzNywiZXhwIjoxNzI5Mjc2MDM3fQ.IAbnfh7SqiMOfLNXkJ4AZ77-GPeB6-MdoTE319ahjnQ",
+                    "domain": "dylanbollaro.ovh",
+                    "path": "/",
+                    "secure": true,
+                    "httpOnly": true,
+                    "hostOnly": true,
+                    "creation": "2024-10-02T20:18:22.264Z",
+                    "lastAccessed": "2024-10-04T18:27:15.207Z",
+                    "sameSite": "none",
+                    "id": "05deeedb-7835-494c-bf91-9c6e464119da"
+                },
+                {
+                    "key": "access_token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoiZGJAZ2FtYWlsLmNvbSIsImlhdCI6MTcyODA2NjUwMiwiZXhwIjoxNzI4MDY3NDAyfQ.i-aLcka_cM_BSMYzSlr5ISHwUdh72lHzqU6foE0ErG0",
+                    "domain": "localhost",
+                    "path": "/",
+                    "secure": true,
+                    "httpOnly": true,
+                    "hostOnly": true,
+                    "creation": "2024-10-04T18:28:12.028Z",
+                    "lastAccessed": "2024-10-04T18:28:20.661Z",
+                    "sameSite": "none",
+                    "id": "829830db-9ae0-4ed0-b4d8-875fbfe9d88d"
+                },
+                {
+                    "key": "refresh_token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoiZGJAZ2FtYWlsLmNvbSIsImlhdCI6MTcyODA2NjUwMiwiZXhwIjoxNzI5Mjc2MTAyfQ._rhlr62KQoAsWdRWUns1xc4HqW3ockt7m_bwu9av7PE",
+                    "domain": "localhost",
+                    "path": "/",
+                    "secure": true,
+                    "httpOnly": true,
+                    "hostOnly": true,
+                    "creation": "2024-10-04T18:28:12.028Z",
+                    "lastAccessed": "2024-10-04T18:28:20.661Z",
+                    "sameSite": "none",
+                    "id": "c27e5b7b-939b-4844-831a-8e9360df5dda"
+                },
+                {
+                    "key": "Next-Locale",
+                    "value": "en",
+                    "domain": "dylanbollaro.ovh",
+                    "path": "/",
+                    "hostOnly": true,
+                    "creation": "2024-10-07T22:27:35.034Z",
+                    "lastAccessed": "2024-10-07T22:27:35.034Z",
+                    "sameSite": "strict",
+                    "id": "3935b34d-571b-438b-9e88-a260ce7db6d5"
+                }
+            ],
+            "_type": "cookie_jar"
+        }
+    ]
+}

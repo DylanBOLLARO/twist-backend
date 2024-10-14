@@ -79,8 +79,10 @@ export class HomeDetailsService {
     }
 
     async create(createHomeDetailDto: any) {
-        let HomeDetail =
-            await this.prisma.homeDetails.create(createHomeDetailDto)
+        console.log(createHomeDetailDto)
+        let HomeDetail = await this.prisma.homeDetails.create({
+            data: createHomeDetailDto,
+        })
         HomeDetail.slug = `${HomeDetail.slug}-${HomeDetail?.id}`
         return await this.update(HomeDetail.id, HomeDetail)
     }

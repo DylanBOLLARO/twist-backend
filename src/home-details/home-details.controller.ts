@@ -6,6 +6,7 @@ import {
     Patch,
     Param,
     Delete,
+    Query,
 } from '@nestjs/common'
 import { HomeDetailsService } from './home-details.service'
 import { CreateHomeDetailDto } from './dto/create-home-detail.dto'
@@ -23,8 +24,8 @@ export class HomeDetailsController {
     }
 
     @Get()
-    async findAll() {
-        return await this.homeDetailsService.findAll()
+    async findAll(@Query() query: any) {
+        return await this.homeDetailsService.findAll(query)
     }
 
     @Get(':idOrSlug')

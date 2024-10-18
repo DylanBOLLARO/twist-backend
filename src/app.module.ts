@@ -6,6 +6,7 @@ import { AtGuard } from './common/guards'
 import { PrismaModule } from './prisma/prisma.module'
 import { LoggerMiddleware } from 'middleware/logger'
 import { HomeDetailsModule } from './home-details/home-details.module'
+import { UploadPictureModule } from './upload-picture/upload-picture.module'
 
 @Module({
     imports: [
@@ -13,6 +14,7 @@ import { HomeDetailsModule } from './home-details/home-details.module'
         AuthModule,
         PrismaModule,
         HomeDetailsModule,
+        UploadPictureModule,
     ],
     providers: [
         {

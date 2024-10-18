@@ -1,6 +1,4 @@
 import { Injectable } from '@nestjs/common'
-import { CreateHomeDetailDto } from './dto/create-home-detail.dto'
-import { UpdateHomeDetailDto } from './dto/update-home-detail.dto'
 import { PrismaService } from 'src/prisma/prisma.service'
 
 @Injectable()
@@ -21,12 +19,12 @@ export class HomeDetailsService {
         return {
             ...this.basicSelect(),
             description: true,
-            location: true,
             address: true,
             postalCode: true,
             city: true,
             country: true,
-            propertyType: true,
+            typeOfProperty: true,
+            typeOfontract: true,
             area: true,
             bedrooms: true,
             bathrooms: true,
@@ -79,7 +77,6 @@ export class HomeDetailsService {
     }
 
     async create(createHomeDetailDto: any) {
-        console.log(createHomeDetailDto)
         let HomeDetail = await this.prisma.homeDetails.create({
             data: createHomeDetailDto,
         })

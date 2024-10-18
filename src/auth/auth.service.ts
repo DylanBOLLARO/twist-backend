@@ -15,25 +15,26 @@ export class AuthService {
         private config: ConfigService,
     ) {}
 
-    async signupLocal(dto: AuthSignupDto): Promise<Tokens> {
+    async signupLocal(authSignupDto: AuthSignupDto): Promise<Tokens> {
+        const { email, firstname, lastname } = authSignupDto
         const isEmailAlreadyExist = await this.prisma.user.findUnique({
             where: {
-                email: dto.email,
+                email,
             },
         })
 
         if (isEmailAlreadyExist)
             throw new ForbiddenException('Email is already in use')
 
-        const hash = await argon.hash(dto.password)
+        const hash = await argon.hash(authSignupDto.password)
 
         const user = await this.prisma.user
             .create({
                 data: {
-                    email: dto.email,
+                    email,
                     hash,
-                    firstname: dto.first_name,
-                    lastname: dto.last_name,
+                    firstname,
+                    lastname,
                 },
             })
             .catch((error) => {

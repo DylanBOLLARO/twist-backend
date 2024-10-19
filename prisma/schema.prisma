@@ -15,7 +15,7 @@ enum Role {
     ADMIN
 }
 
-enum TypeOfontract {
+enum TypeOfContract {
     SHORT_TERM_RENTAL
     LONG_TERM_RENTAL
     SALE
@@ -70,7 +70,7 @@ model HomeDetails {
     country    String?
 
     typeOfProperty TypeOfProperty? // e.g., "house", "apartment"
-    typeOfontract  TypeOfontract? // e.g., "house", "apartment"
+    typeOfContract TypeOfContract? // e.g., "house", "apartment"
     area           Float? // Surface area in square meters
     bedrooms       nbBedrooms?
     bathrooms      nbBathrooms?

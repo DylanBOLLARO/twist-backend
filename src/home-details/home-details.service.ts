@@ -12,6 +12,11 @@ export class HomeDetailsService {
             title: true,
             price: true,
             images: true,
+            typeOfProperty: true,
+            typeOfContract: true,
+            area: true,
+            createdAt: true,
+            updatedAt: true,
         }
     }
 
@@ -23,16 +28,11 @@ export class HomeDetailsService {
             postalCode: true,
             city: true,
             country: true,
-            typeOfProperty: true,
-            typeOfontract: true,
-            area: true,
             bedrooms: true,
             bathrooms: true,
             garage: true,
             garden: true,
             pool: true,
-            createdAt: true,
-            updatedAt: true,
             user: {
                 select: {
                     firstname: true,
@@ -125,8 +125,4 @@ export class HomeDetailsService {
             data: createHomeDetailDto,
         })
     }
-
-    // async remove(id: number) {
-    //     return await `This action removes a #${id} homeDetail`
-    // }
 }

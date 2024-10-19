@@ -20,7 +20,6 @@ export class HomeDetailsController {
     @Post()
     @UsePipes(CreateHomeDetailsPipe)
     async create(@Body() createHomeDetailDto: CreateHomeDetailDto) {
-        console.log(createHomeDetailDto)
         return await this.homeDetailsService.create(createHomeDetailDto)
     }
 

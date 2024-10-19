@@ -70,9 +70,25 @@ export class HomeDetailsService {
         }
     }
 
-    private composeWhere(query: string) {
+    private composeWhere(params: any) {
+        const { typeOfProperty, typeOfContract, query } = params
+
         return {
             ...(!!query ? this.basicQuery(query) : {}),
+            ...(!!typeOfProperty
+                ? {
+                      typeOfProperty: {
+                          equals: typeOfProperty,
+                      },
+                  }
+                : {}),
+            ...(!!typeOfContract
+                ? {
+                      typeOfContract: {
+                          equals: typeOfContract,
+                      },
+                  }
+                : {}),
         }
     }
 
@@ -85,13 +101,13 @@ export class HomeDetailsService {
     }
 
     async findAll(params: any) {
-        const { number = 20, offset, addHomeDetailsInformation, query } = params
+        const { number = 20, offset, addHomeDetailsInformation } = params
 
         const composeQuery: any = {
             take: number ? +number : undefined,
             skip: offset ? +offset : undefined,
             select: this.composeSelect(addHomeDetailsInformation),
-            where: this.composeWhere(query),
+            where: this.composeWhere(params),
         }
 
         const results = await this.prisma.homeDetails.findMany(composeQuery)

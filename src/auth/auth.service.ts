@@ -82,6 +82,7 @@ export class AuthService {
                 role: true,
                 createdAt: true,
                 updatedAt: true,
+                homeDetails: true,
             },
         })
     }

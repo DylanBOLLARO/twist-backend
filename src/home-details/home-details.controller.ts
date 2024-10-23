@@ -7,6 +7,7 @@ import {
     Query,
     Patch,
     UseGuards,
+    Delete,
 } from '@nestjs/common'
 import { HomeDetailsService } from './home-details.service'
 import { CreateHomeDetailDto } from './dto/create-home-detail.dto'
@@ -47,5 +48,13 @@ export class HomeDetailsController {
             updateHomeDetailDto,
             userId,
         )
+    }
+
+    @Delete(':idOrSlug')
+    remove(
+        @Param('idOrSlug') idOrSlug: string,
+        @GetCurrentUserId() userId: number,
+    ) {
+        return this.homeDetailsService.remove(idOrSlug, userId)
     }
 }

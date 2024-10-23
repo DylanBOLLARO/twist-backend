@@ -159,4 +159,21 @@ export class HomeDetailsService {
             data: updateTestDto,
         })
     }
+
+    async remove(idOrSlug: any, userId: number) {
+        const target = this.targetHomeDetailsByIdOrSlug(idOrSlug)
+
+        const { userId: homeDetailsUserId }: any =
+            await this.prisma.homeDetails.findUnique({
+                where: target,
+            })
+
+        if (homeDetailsUserId !== userId) {
+            throw new ForbiddenException('You do not have modification rights')
+        }
+
+        return await this.prisma.homeDetails.delete({
+            where: target,
+        })
+    }
 }

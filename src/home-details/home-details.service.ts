@@ -1,10 +1,18 @@
-import { Injectable } from '@nestjs/common'
+import { ForbiddenException, Injectable } from '@nestjs/common'
 import { PrismaService } from 'src/prisma/prisma.service'
+import { CreateHomeDetailDto } from './dto/create-home-detail.dto'
 
 @Injectable()
 export class HomeDetailsService {
     constructor(private prisma: PrismaService) {}
 
+    private targetHomeDetailsByIdOrSlug(idOrSlug: any) {
+        return {
+            ...(Number.isNaN(parseInt(idOrSlug))
+                ? { slug: idOrSlug }
+                : { id: +idOrSlug }),
+        }
+    }
     private basicSelect() {
         return {
             id: true,
@@ -64,9 +72,7 @@ export class HomeDetailsService {
 
     private composeFindByIdOrSlug(idOrSlug: any) {
         return {
-            ...(Number.isNaN(parseInt(idOrSlug))
-                ? { slug: idOrSlug }
-                : { id: +idOrSlug }),
+            ...this.targetHomeDetailsByIdOrSlug(idOrSlug),
         }
     }
 
@@ -93,11 +99,14 @@ export class HomeDetailsService {
     }
 
     async create(createHomeDetailDto: any) {
-        let HomeDetail = await this.prisma.homeDetails.create({
+        let HomeDetail: any = await this.prisma.homeDetails.create({
             data: createHomeDetailDto,
         })
         HomeDetail.slug = `${HomeDetail?.slug}-${HomeDetail?.id}`
-        return await this.update(HomeDetail.id, HomeDetail)
+        return await this.prisma.homeDetails.update({
+            where: { id: HomeDetail.id },
+            data: HomeDetail,
+        })
     }
 
     async findAll(params: any) {
@@ -133,13 +142,20 @@ export class HomeDetailsService {
         return await this.prisma.homeDetails.findUnique(composeQuery)
     }
 
-    async update(idOrSlug: any, updateTestDto: any) {
+    async update(idOrSlug: any, updateTestDto: any, userId: number) {
+        const target = this.targetHomeDetailsByIdOrSlug(idOrSlug)
+
+        const { userId: homeDetailsUserId }: any =
+            await this.prisma.homeDetails.findUnique({
+                where: target,
+            })
+
+        if (homeDetailsUserId !== userId) {
+            throw new ForbiddenException('You do not have modification rights')
+        }
+
         return await this.prisma.homeDetails.update({
-            where: {
-                ...(Number.isNaN(parseInt(idOrSlug))
-                    ? { slug: idOrSlug }
-                    : { id: +idOrSlug }),
-            },
+            where: target,
             data: updateTestDto,
         })
     }

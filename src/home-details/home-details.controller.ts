@@ -5,12 +5,12 @@ import {
     Body,
     Param,
     Query,
-    UsePipes,
+    Patch,
 } from '@nestjs/common'
 import { HomeDetailsService } from './home-details.service'
 import { CreateHomeDetailDto } from './dto/create-home-detail.dto'
 import { Public } from 'src/common/decorators'
-import { CreateHomeDetailsPipe } from './pipes/create.pipe'
+import { CreateHomeDetailsPipe, UpdateHomeDetailsPipe } from './pipes'
 
 @Public()
 @Controller('home-details')
@@ -18,8 +18,9 @@ export class HomeDetailsController {
     constructor(private readonly homeDetailsService: HomeDetailsService) {}
 
     @Post()
-    @UsePipes(CreateHomeDetailsPipe)
-    async create(@Body() createHomeDetailDto: CreateHomeDetailDto) {
+    async create(
+        @Body(CreateHomeDetailsPipe) createHomeDetailDto: CreateHomeDetailDto,
+    ) {
         return await this.homeDetailsService.create(createHomeDetailDto)
     }
 
@@ -31,5 +32,13 @@ export class HomeDetailsController {
     @Get(':idOrSlug')
     findOne(@Param('idOrSlug') idOrSlug: any) {
         return this.homeDetailsService.findOne(idOrSlug)
+    }
+
+    @Patch(':idOrSlug')
+    update(
+        @Param('idOrSlug') idOrSlug: string,
+        @Body(UpdateHomeDetailsPipe) updateHomeDetailDto: any,
+    ) {
+        return this.homeDetailsService.update(idOrSlug, updateHomeDetailDto)
     }
 }

@@ -133,12 +133,14 @@ export class HomeDetailsService {
         return await this.prisma.homeDetails.findUnique(composeQuery)
     }
 
-    async update(id: number, createHomeDetailDto: any) {
+    async update(idOrSlug: any, updateTestDto: any) {
         return await this.prisma.homeDetails.update({
             where: {
-                id,
+                ...(Number.isNaN(parseInt(idOrSlug))
+                    ? { slug: idOrSlug }
+                    : { id: +idOrSlug }),
             },
-            data: createHomeDetailDto,
+            data: updateTestDto,
         })
     }
 }

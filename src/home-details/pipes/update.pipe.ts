@@ -1,9 +1,13 @@
 import { PipeTransform, Injectable, ArgumentMetadata } from '@nestjs/common'
 
 @Injectable()
-export class CreateHomeDetailsPipe implements PipeTransform {
+export class UpdateHomeDetailsPipe implements PipeTransform {
     transform(value: any, metadata: ArgumentMetadata) {
         let local_value = { ...value }
+
+        if (local_value?.slug) {
+            delete local_value?.slug
+        }
 
         if (local_value?.price) {
             local_value.price = parseInt(local_value.price)
